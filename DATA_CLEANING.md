@@ -7,7 +7,7 @@
 
  
 
-  let 
+      let 
 
       Source = Access.Database(File.Contents("C:\Users\Travail\OneDrive - EPITA\Projet\New York succes from school\Data\2021-2022\Windows Access\ELL_2021_2022.accdb"), [CreateNavigationProperties=true]), 
 
@@ -19,7 +19,7 @@
 
       MODIF3 = Table.TransformColumnTypes(MODIF2, {{"NUM_SWD", Decimal.Type}, {"NUM_ECDIS", Decimal.Type}, {"PER_SWD", Decimal.Type}, {"PER_ECDIS",  Decimal.Type}}) 
 
-  in 
+      in 
 
       MODIF3 
 
@@ -31,7 +31,7 @@
 
  
 
-let 
+    let 
 
     Source = Access.Database(File.Contents("C:\Users\Travail\OneDrive - EPITA\Projet\New York succes from school\Data\2021-2022\Windows Access\ELL_2021_2022.accdb"), [CreateNavigationProperties=true]), 
 
@@ -39,7 +39,7 @@ let
 
     MODIF1 = Table.TransformColumnTypes(#"_2021-22 ELL Home Languages", {"LANGUAGE_RANK", Int64.Type}) 
 
-in 
+    in 
 
     MODIF1 
 
@@ -49,7 +49,7 @@ in
 
  
 
-let 
+    let 
 
     Source = Access.Database(File.Contents("C:\Users\Travail\OneDrive - EPITA\Projet\New York succes from school\Data\2021-2022\Windows Access\ELL_2021_2022.accdb"), [CreateNavigationProperties=true]), 
 
@@ -63,11 +63,7 @@ let
 
     MODIF3 = Table.TransformColumnTypes(#"Valeur remplacée", {{"NUM_SWD", Int64.Type},{"PER_SWD", Decimal.Type},{"NUM_ECDIS", Int64.Type},{"PER_ECDIS", Decimal.Type}})  
 
-  
-
-in  
-
-  
+    in  
 
     MODIF3 
 
@@ -77,7 +73,7 @@ in
 
  
 
-let 
+    let 
 
     Source = Access.Database(File.Contents("C:\Users\Travail\OneDrive - EPITA\Projet\New York succes from school\Data\2021-2022\Windows Access\GRAD_RATE_AND_OUTCOMES_2022.mdb"), [CreateNavigationProperties=true]), 
 
@@ -91,7 +87,7 @@ let
 
     
 
-in 
+    in 
 
     TRANSTYPE 
 
@@ -101,7 +97,7 @@ in
 
  
 
-let 
+    let 
 
     Source = Access.Database(File.Contents("C:\Users\Travail\OneDrive - EPITA\Projet\New York succes from school\Data\2021-2022\Windows Access\SRC2022.accdb"), [CreateNavigationProperties=true]), 
 
@@ -121,7 +117,7 @@ let
 
   
 
-in 
+    in 
 
      
 
@@ -133,7 +129,7 @@ in
 
  
 
-let 
+    let 
 
     Source = Access.Database(File.Contents("C:\Users\Travail\OneDrive - EPITA\Projet\New York succes from school\Data\2021-2022\Windows Access\SRC2022.accdb"), [CreateNavigationProperties=true]), 
 
@@ -149,7 +145,7 @@ let
 
   
 
-in 
+    in 
 
     TRANSTYPE 
 
@@ -159,7 +155,7 @@ in
 
  
 
-let 
+    let 
 
     Source = Access.Database(File.Contents("C:\Users\Travail\OneDrive - EPITA\Projet\New York succes from school\Data\2021-2022\Windows Access\SRC2022.accdb"), [CreateNavigationProperties=true]), 
 
@@ -179,7 +175,7 @@ let
 
   
 
-in 
+    in 
 
     TRANSTYPE 
 
@@ -189,7 +185,7 @@ in
 
  
 
-let 
+    let 
 
     Source = Access.Database(File.Contents("C:\Users\Travail\OneDrive - EPITA\Projet\New York succes from school\Data\2021-2022\Windows Access\SRC2022.accdb"), [CreateNavigationProperties=true]), 
 
@@ -203,7 +199,7 @@ let
 
     TRANSTYPE = Table.TransformColumnTypes(TRANSVALUE2, {{"ENROLLMENT", Int64.Type}, {"ABSENT_COUNT", Int64.Type}, {"ABSENT_RATE", Decimal.Type}}) 
 
-in 
+    in 
 
     TRANSTYPE 
 
@@ -213,7 +209,7 @@ in
 
  
 
-let 
+    let 
 
     Source = Access.Database(File.Contents("C:\Users\Travail\OneDrive - EPITA\Projet\New York succes from school\Data\2021-2022\Windows Access\SRC2022.accdb"), [CreateNavigationProperties=true]), 
 
@@ -227,7 +223,7 @@ let
 
     TT = Table.TransformColumnTypes(TV2, {{"COHORT", Int64.Type}, {"RATE", Decimal.Type}}) 
 
-in 
+    in 
 
     TT 
 
@@ -237,7 +233,7 @@ in
 
  
 
-let 
+    let 
 
     Source = Access.Database(File.Contents("C:\Users\Travail\OneDrive - EPITA\Projet\New York succes from school\Data\2021-2022\Windows Access\SRC2022.accdb"), [CreateNavigationProperties=true]), 
 
@@ -245,13 +241,13 @@ let
 
     
 
-   TRANSVALUE = Table.ReplaceValue(#"_ACC HS Core and Weighted Performance", "s", "", Replacer.ReplaceValue, {"CORE_COHORT", "CORE_INDEX", "CORE_LEVEL", "WEIGHTED_COHORT", "WEIGHTED_INDEX", "WGT_LEVEL"}),    
+    TRANSVALUE = Table.ReplaceValue(#"_ACC HS Core and Weighted Performance", "s", "", Replacer.ReplaceValue, {"CORE_COHORT", "CORE_INDEX", "CORE_LEVEL", "WEIGHTED_COHORT", "WEIGHTED_INDEX", "WGT_LEVEL"}),    
 
     TRANSVALUE2 = Table.ReplaceValue(TRANSVALUE, ".", ",", Replacer.ReplaceText, {"CORE_COHORT", "CORE_INDEX", "CORE_LEVEL", "WEIGHTED_COHORT", "WEIGHTED_INDEX", "WGT_LEVEL"}),   
 
     TRANSTYPE = Table.TransformColumnTypes(TRANSVALUE2, {{"CORE_COHORT", Int64.Type}, {"CORE_INDEX", Decimal.Type}, {"CORE_LEVEL", Int64.Type}, {"WEIGHTED_COHORT", Int64.Type}, {"WEIGHTED_INDEX", Decimal.Type}, {"WGT_LEVEL", Int64.Type}})   
 
-in  
+    in  
 
     TRANSTYPE 
 
@@ -261,7 +257,7 @@ in
 
  
 
-let 
+    let 
 
     Source = Access.Database(File.Contents("C:\Users\Travail\OneDrive - EPITA\Projet\New York succes from school\Data\2021-2022\Windows Access\SRC2022.accdb"), [CreateNavigationProperties=true]), 
 
@@ -277,7 +273,7 @@ let
 
  
 
-in  
+    in  
 
  
 
@@ -289,7 +285,7 @@ in
 
  
 
-let 
+    let 
 
     Source = Access.Database(File.Contents("C:\Users\Travail\OneDrive - EPITA\Projet\New York succes from school\Data\2021-2022\Windows Access\SRC2022.accdb"), [CreateNavigationProperties=true]), 
 
@@ -305,7 +301,7 @@ let
 
     TT = Table.TransformColumnTypes(TV2, {{"COHORT", Int64.Type}, {"RATE", Decimal.Type}})  
 
-in  
+    in  
 
     TT 
 
@@ -315,7 +311,7 @@ in
 
  
 
-let 
+    let 
 
     Source = Access.Database(File.Contents("C:\Users\Travail\OneDrive - EPITA\Projet\New York succes from school\Data\2021-2022\Windows Access\SRC2022.accdb"), [CreateNavigationProperties=true]), 
 
@@ -331,7 +327,7 @@ let
 
      
 
-in 
+    in 
 
     MODIF3 
 
@@ -341,7 +337,7 @@ in
 
  
 
-let 
+    let 
 
     Source = Access.Database(File.Contents("C:\Users\Travail\OneDrive - EPITA\Projet\New York succes from school\Data\2021-2022\Windows Access\SRC2022.accdb"), [CreateNavigationProperties=true]), 
 
@@ -353,7 +349,7 @@ let
 
     TT = Table.TransformColumnTypes(TV2, {{"TOTAL_COUNT", Int64.Type}, {"NOT_TESTED", Int64.Type}, {"PCT_NOT_TESTED", Decimal.Type}, {"NUM_TESTED", Int64.Type}, {"PCT_TESTED", Decimal.Type}, {"LEVEL1_COUNT", Int64.Type}, {"LEVEL1_%TESTED", Decimal.Type}, {"LEVEL2_COUNT", Int64.Type}, {"LEVEL2_%TESTED", Decimal.Type}, {"LEVEL3_COUNT", Int64.Type}, {"LEVEL3_%TESTED", Decimal.Type}, {"LEVEL4_COUNT", Int64.Type}, {"LEVEL4_%TESTED", Decimal.Type}, {"NUM_PROF", Int64.Type},{"PER_PROF", Decimal.Type},{"TOTAL_SCALE_SCORES", Int64.Type}, {"MEAN_SCORE", Int64.Type}}) 
 
-in 
+    in 
 
     TT 
 
@@ -363,7 +359,7 @@ in
 
  
 
-let 
+    let 
 
     Source = Access.Database(File.Contents("C:\Users\Travail\OneDrive - EPITA\Projet\New York succes from school\Data\2021-2022\Windows Access\SRC2022.accdb"), [CreateNavigationProperties=true]), 
 
@@ -375,7 +371,7 @@ let
 
     TT = Table.TransformColumnTypes(TV2, {{"TOTAL_COUNT", Int64.Type}, {"NOT_TESTED", Int64.Type}, {"PCT_NOT_TESTED", Decimal.Type}, {"NUM_TESTED", Int64.Type}, {"PCT_TESTED", Decimal.Type}, {"LEVEL1_COUNT", Int64.Type}, {"LEVEL1_%TESTED", Decimal.Type}, {"LEVEL2_COUNT", Int64.Type}, {"LEVEL2_%TESTED", Decimal.Type}, {"LEVEL3_COUNT", Int64.Type}, {"LEVEL3_%TESTED", Decimal.Type}, {"LEVEL4_COUNT", Int64.Type}, {"LEVEL4_%TESTED", Decimal.Type},{"LEVEL5_COUNT", Int64.Type}, {"LEVEL5_%TESTED", Decimal.Type}, {"NUM_PROF", Int64.Type},{"PER_PROF", Decimal.Type},{"TOTAL_SCALE_SCORES", Int64.Type}, {"MEAN_SCORE", Int64.Type} , {"TOTAL_EXEMPT", Int64.Type}, {"NUM_EXEMPT_NTEST", Int64.Type}, {"PCT_EXEMPT_NTEST", Decimal.Type}, {"NUM_EXEMPT_TEST", Int64.Type}, {"PCT_EXEMPT_TEST", Decimal.Type}}) 
 
-in 
+    in 
 
     TT 
 
@@ -385,7 +381,7 @@ in
 
  
 
-let 
+    let 
 
     Source = Access.Database(File.Contents("C:\Users\Travail\OneDrive - EPITA\Projet\New York succes from school\Data\2021-2022\Windows Access\SRC2022.accdb"), [CreateNavigationProperties=true]), 
 
@@ -397,7 +393,7 @@ let
 
     TT = Table.TransformColumnTypes(TV2, {{"TOTAL_COUNT", Int64.Type}, {"NOT_TESTED", Int64.Type}, {"PCT_NOT_TESTED", Decimal.Type}, {"NUM_TESTED", Int64.Type}, {"PCT_TESTED", Decimal.Type}, {"LEVEL1_COUNT", Int64.Type}, {"LEVEL1_%TESTED", Decimal.Type}, {"LEVEL2_COUNT", Int64.Type}, {"LEVEL2_%TESTED", Decimal.Type}, {"LEVEL3_COUNT", Int64.Type}, {"LEVEL3_%TESTED", Decimal.Type}, {"LEVEL4_COUNT", Int64.Type}, {"LEVEL4_%TESTED", Decimal.Type}, {"NUM_PROF", Int64.Type},{"PER_PROF", Decimal.Type},{"TOTAL_SCALE_SCORES", Int64.Type}, {"MEAN_SCORE", Int64.Type} , {"TOTAL_EXEMPT", Int64.Type}, {"NUM_EXEMPT_NTEST", Int64.Type}, {"PCT_EXEMPT_NTEST", Decimal.Type}, {"NUM_EXEMPT_TEST", Int64.Type}, {"PCT_EXEMPT_TEST", Decimal.Type}}) 
 
-in 
+    in 
 
     TT 
 
@@ -407,7 +403,7 @@ in
 
  
 
-let 
+    let 
 
     Source = Access.Database(File.Contents("C:\Users\Travail\OneDrive - EPITA\Projet\New York succes from school\Data\2021-2022\Windows Access\SRC2022.accdb"), [CreateNavigationProperties=true]), 
 
@@ -419,7 +415,7 @@ let
 
     TT = Table.TransformColumnTypes(TV2, {{"TOTAL", Int64.Type}, {"NOT_TESTED", Int64.Type}, {"NOT_TESTED_PER", Decimal.Type}, {"EXEMPT", Int64.Type}, {"EXEMPT_PER", Decimal.Type}, {"TESTED", Int64.Type}, {"PER_TESTED", Decimal.Type}, {"LEVEL1_COUNT", Int64.Type}, {"LEVEL1_PER", Decimal.Type}, {"LEVEL2_COUNT", Int64.Type}, {"LEVEL2_PER", Decimal.Type}, {"LEVEL3_COUNT", Int64.Type}, {"LEVEL3_PER", Decimal.Type}, {"LEVEL4_COUNT", Int64.Type}, {"LEVEL4_PER", Decimal.Type},{"PROFICIENT_COUNT", Int64.Type}, {"PROFICIENT_PER", Decimal.Type}})  
 
-in  
+    in  
 
     TT 
 
@@ -427,7 +423,7 @@ in
 
 ### Annual NYSESLAT 
 
-let 
+    let 
 
     Source = Access.Database(File.Contents("C:\Users\Travail\OneDrive - EPITA\Projet\New York succes from school\Data\2021-2022\Windows Access\SRC2022.accdb"), [CreateNavigationProperties=true]), 
 
@@ -439,7 +435,7 @@ let
 
     TT = Table.TransformColumnTypes(TV2, {{"TOTAL", Int64.Type}, {"NOT_TESTED", Int64.Type}, {"PER_NTEST", Decimal.Type}, {"TESTED", Int64.Type}, {"PER_TEST", Decimal.Type}, {"NUM_ENT", Int64.Type}, {"PER_ENT", Decimal.Type}, {"NUM_EMER", Int64.Type}, {"PER_EMER", Decimal.Type}, {"NUM_TRAN", Int64.Type}, {"PER_TRAN", Decimal.Type}, {"NUM_EXP", Int64.Type}, {"PER_EXP", Decimal.Type}, {"NUM_COM", Int64.Type}, {"PER_COM", Decimal.Type}}) 
 
-in  
+    in  
 
     TT 
 
@@ -451,7 +447,7 @@ in
 
  
 
-let 
+    let 
 
     Source = Access.Database(File.Contents("C:\Users\Travail\OneDrive - EPITA\Projet\New York succes from school\Data\2021-2022\Windows Access\SRC2022.accdb"), [CreateNavigationProperties=true]), 
 
@@ -463,7 +459,7 @@ let
 
     TT = Table.TransformColumnTypes(TV2, { {"TESTED", Int64.Type}, {"NUM_LEVEL1", Int64.Type}, {"PER_LEVEL1", Decimal.Type}, {"NUM_LEVEL2", Int64.Type}, {"PER_LEVEL2", Decimal.Type}, {"NUM_LEVEL3", Int64.Type}, {"PER_LEVEL3", Decimal.Type}, {"NUM_LEVEL4", Int64.Type}, {"PER_LEVEL4", Decimal.Type}, {"NUM_LEVEL5", Int64.Type}, {"PER_LEVEL5", Decimal.Type}, {"NUM_PROF", Int64.Type}, {"PER_PROF", Decimal.Type}, {"TOTAL_EXEMPT", Int64.Type}, {"NUM_EXEMPT_NTEST", Int64.Type}, {"PCT_EXEMPT_NTEST", Decimal.Type}, {"NUM_EXEMPT_TEST", Int64.Type}, {"PCT_EXEMPT_TEST", Decimal.Type}}) 
 
-in 
+    in 
 
     TT 
 
@@ -473,7 +469,7 @@ in
 
  
 
-let 
+    let 
 
     Source = Access.Database(File.Contents("C:\Users\Travail\OneDrive - EPITA\Projet\New York succes from school\Data\2021-2022\Windows Access\SRC2022.accdb"), [CreateNavigationProperties=true]), 
 
@@ -485,7 +481,7 @@ let
 
     TT = Table.TransformColumnTypes(TV2, {{"NTEST_COUNT", Int64.Type}, {"NTEST_%COHORT", Decimal.Type}, {"TEST_COUNT", Int64.Type}, {"TEST_%COHORT", Decimal.Type}, {"LEVEL1_COUNT", Int64.Type}, {"LEVEL1_%COHORT", Decimal.Type}, {"LEVEL2_COUNT", Int64.Type}, {"LEVEL2_%COHORT", Decimal.Type}, {"LEVEL3_COUNT", Int64.Type}, {"LEVEL3_%COHORT", Decimal.Type}, {"LEVEL4_COUNT", Int64.Type}, {"LEVEL4_%COHORT", Decimal.Type}, {"PROF_COUNT", Int64.Type}, {"PROF_%COHORT", Decimal.Type}, {"TOTAL_EXEMPT", Int64.Type},{"NUM_EXEMPT_NTEST", Int64.Type},{"PCT_EXEMPT_NTEST", Decimal.Type},{"NUM_EXEMPT_TEST", Int64.Type},{"PCT_EXEMPT_TEST", Decimal.Type}}) 
 
-in 
+    in 
 
     TT 
 
@@ -495,7 +491,7 @@ in
 
  
 
-let 
+    let 
 
     Source = Excel.Workbook(File.Contents("C:\Users\Travail\OneDrive - EPITA\Projet\New York succes from school\Data\2021-2022\csv\3-8-ELA-MATH-REFUSALS.xlsx"), null, true), 
 
@@ -509,7 +505,7 @@ let
 
     #"Premières lignes supprimées" = Table.Skip(#"Colonnes renommées",1) 
 
-in 
+    in 
 
     #"Premières lignes supprimées" 
 
@@ -519,7 +515,7 @@ in
 
  
 
-let 
+    let 
 
     Source = Excel.Workbook(File.Contents("C:\Users\Travail\OneDrive - EPITA\Projet\New York succes from school\Data\2021-2022\csv\3-8-ELA-MATH-REFUSALS.xlsx"), null, true), 
 
@@ -533,6 +529,6 @@ let
 
     #"Premières lignes supprimées" = Table.Skip(#"Colonnes renommées",1) 
 
-in 
+    in 
 
     #"Premières lignes supprimées" 
