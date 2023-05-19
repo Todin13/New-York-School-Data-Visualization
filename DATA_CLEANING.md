@@ -12,6 +12,7 @@
       Source = Access.Database(File.Contents("C:\Users\Travail\OneDrive - EPITA\Projet\New York succes from school\Data\2021-2022\Windows Access\ELL_2021_2022.accdb"), [CreateNavigationProperties=true]), 
 
       #"_~TMPCLP555981" = Source{[Schema="",Item="~TMPCLP555981"]}[Data], 
+      
 
       MODIF1 = Table.ReplaceValue(#"_~TMPCLP555981","-","0",Replacer.ReplaceValue,{"NUM_SWD", "NUM_ECDIS"}), 
 
@@ -36,6 +37,7 @@
     Source = Access.Database(File.Contents("C:\Users\Travail\OneDrive - EPITA\Projet\New York succes from school\Data\2021-2022\Windows Access\ELL_2021_2022.accdb"), [CreateNavigationProperties=true]), 
 
     #"_2021-22 ELL Home Languages" = Source{[Schema="",Item="2021-22 ELL Home Languages"]}[Data], 
+    
 
     MODIF1 = Table.TransformColumnTypes(#"_2021-22 ELL Home Languages", {"LANGUAGE_RANK", Int64.Type}) 
 
@@ -53,9 +55,8 @@
 
     Source = Access.Database(File.Contents("C:\Users\Travail\OneDrive - EPITA\Projet\New York succes from school\Data\2021-2022\Windows Access\ELL_2021_2022.accdb"), [CreateNavigationProperties=true]), 
 
-    #"_2021-22 ELL Enrollment" = Source{[Schema="",Item="2021-22 ELL Enrollment"]}[Data], 
-
-     
+    #"_2021-22 ELL Enrollment" = Source{[Schema="",Item="2021-22 ELL Enrollment"]}[Data],
+    
 
     MODIF1 = Table.ReplaceValue(#"_2021-22 ELL Enrollment","-","",Replacer.ReplaceValue,{"NUM_SWD","PER_SWD", "NUM_ECDIS", "PER_ECDIS"}),   
 
@@ -79,7 +80,6 @@
 
     _GRAD_RATE_AND_OUTCOMES_2022 = Source{[Schema="",Item="GRAD_RATE_AND_OUTCOMES_2022"]}[Data], 
 
-  
 
     VALUETRANS = Table.ReplaceValue(_GRAD_RATE_AND_OUTCOMES_2022, "-", "",Replacer.ReplaceValue, {"enroll_cnt","grad_cnt","grad_pct","local_cnt", "local_pct", "reg_cnt", "reg_pct", "reg_adv_cnt", "reg_adv_pct", "non_diploma_credential_cnt", "non_diploma_credential_pct", "still_enr_cnt", "still_enr_pct", "ged_cnt", "ged_pct", "dropout_cnt", "dropout_pct"}), 
 
@@ -104,22 +104,13 @@
     #"_ACC EM ELP" = Source{[Schema="",Item="ACC EM ELP"]}[Data], 
 
   
-
-    TRANSVALUE = Table.ReplaceValue(#"_ACC EM ELP", "s", "", Replacer.ReplaceValue, {"ELL_COUNT", "BENCHMARK", "PROGRESS_RATE", "SUCCESS_RATIO", "LEVEL"}), 
-
-  
-
+    TRANSVALUE = Table.ReplaceValue(#"_ACC EM ELP", "s", "", Replacer.ReplaceValue, {"ELL_COUNT", "BENCHMARK", "PROGRESS_RATE", "SUCCESS_RATIO", "LEVEL"}),
+    
     TRANSVALUE2 = Table.ReplaceValue(TRANSVALUE, ".", ",", Replacer.ReplaceText, {"SUCCESS_RATIO"}), 
-
-  
-
+    
     TRANSTYPE = Table.TransformColumnTypes(TRANSVALUE2, {{"ELL_COUNT", Int64.Type}, {"BENCHMARK", Int64.Type},{"PROGRESS_RATE", Int64.Type},{"SUCCESS_RATIO", Decimal.Type}, {"LEVEL", Int64.Type}}) 
 
-  
-
-    in 
-
-     
+    in    
 
     TRANSTYPE 
 
@@ -136,14 +127,11 @@
     #"_ACC EM Chronic Absenteeism" = Source{[Schema="",Item="ACC EM Chronic Absenteeism"]}[Data], 
 
   
-
     TRANSVALUE = Table.ReplaceValue(#"_ACC EM Chronic Absenteeism", "s", "", Replacer.ReplaceValue, {"ENROLLMENT", "ABSENT_COUNT", "ABSENT_RATE"}), 
 
     TRANSVALUE2 = Table.ReplaceValue(TRANSVALUE, ".", ",", Replacer.ReplaceText, {"ABSENT_RATE"}), 
 
     TRANSTYPE = Table.TransformColumnTypes(TRANSVALUE2, {{"ENROLLMENT", Int64.Type}, {"ABSENT_COUNT", Int64.Type}, {"ABSENT_RATE", Decimal.Type}}) 
-
-  
 
     in 
 
@@ -161,20 +149,13 @@
 
     #"_ACC EM Core and Weighted Performance" = Source{[Schema="",Item="ACC EM Core and Weighted Performance"]}[Data], 
 
-  
 
     TRANSVALUE = Table.ReplaceValue(#"_ACC EM Core and Weighted Performance", "s", "", Replacer.ReplaceValue, {"CORE_COHORT", "CORE_INDEX", "CORE_LEVEL", "WEIGHTED_COHORT", "WEIGHTED_INDEX", "WGT_LEVEL"}),  
-
-  
-
-    TRANSVALUE2 = Table.ReplaceValue(TRANSVALUE, ".", ",", Replacer.ReplaceText, {"CORE_COHORT", "CORE_INDEX", "CORE_LEVEL", "WEIGHTED_COHORT", "WEIGHTED_INDEX", "WGT_LEVEL"}), 
-
-  
-
-    TRANSTYPE = Table.TransformColumnTypes(TRANSVALUE2, {{"CORE_COHORT", Int64.Type}, {"CORE_INDEX", Decimal.Type}, {"CORE_LEVEL", Int64.Type}, {"WEIGHTED_COHORT", Int64.Type}, {"WEIGHTED_INDEX", Decimal.Type}, {"WGT_LEVEL", Int64.Type}})  
-
-  
-
+    
+    TRANSVALUE2 = Table.ReplaceValue(TRANSVALUE, ".", ",", Replacer.ReplaceText, {"CORE_COHORT", "CORE_INDEX", "CORE_LEVEL", "WEIGHTED_COHORT", "WEIGHTED_INDEX", "WGT_LEVEL"}),
+    
+    TRANSTYPE = Table.TransformColumnTypes(TRANSVALUE2, {{"CORE_COHORT", Int64.Type}, {"CORE_INDEX", Decimal.Type}, {"CORE_LEVEL", Int64.Type}, {"WEIGHTED_COHORT", Int64.Type}, {"WEIGHTED_INDEX", Decimal.Type}, {"WGT_LEVEL", Int64.Type}}) 
+    
     in 
 
     TRANSTYPE 
@@ -190,13 +171,12 @@
     Source = Access.Database(File.Contents("C:\Users\Travail\OneDrive - EPITA\Projet\New York succes from school\Data\2021-2022\Windows Access\SRC2022.accdb"), [CreateNavigationProperties=true]), 
 
     #"_ACC HS Chronic Absenteeism" = Source{[Schema="",Item="ACC HS Chronic Absenteeism"]}[Data], 
-
   
 
     TRANSVALUE = Table.ReplaceValue(#"_ACC HS Chronic Absenteeism", "s", "", Replacer.ReplaceValue, {"ENROLLMENT", "ABSENT_COUNT", "ABSENT_RATE"}), 
-
-    TRANSVALUE2 = Table.ReplaceValue(TRANSVALUE, ".", ",", Replacer.ReplaceText, {"ABSENT_RATE"}), 
-
+    
+    TRANSVALUE2 = Table.ReplaceValue(TRANSVALUE, ".", ",", Replacer.ReplaceText, {"ABSENT_RATE"}),
+    
     TRANSTYPE = Table.TransformColumnTypes(TRANSVALUE2, {{"ENROLLMENT", Int64.Type}, {"ABSENT_COUNT", Int64.Type}, {"ABSENT_RATE", Decimal.Type}}) 
 
     in 
@@ -215,7 +195,6 @@
 
     #"_ACC EM Participation Rate" = Source{[Schema="",Item="ACC EM Participation Rate"]}[Data], 
 
-  
 
     TV = Table.ReplaceValue(#"_ACC EM Participation Rate", "s", "", Replacer.ReplaceValue, {"COHORT","RATE","MET_95_PERCENT"}), 
 
@@ -239,7 +218,6 @@
 
     #"_ACC HS Core and Weighted Performance" = Source{[Schema="",Item="ACC HS Core and Weighted Performance"]}[Data], 
 
-    
 
     TRANSVALUE = Table.ReplaceValue(#"_ACC HS Core and Weighted Performance", "s", "", Replacer.ReplaceValue, {"CORE_COHORT", "CORE_INDEX", "CORE_LEVEL", "WEIGHTED_COHORT", "WEIGHTED_INDEX", "WGT_LEVEL"}),    
 
@@ -263,19 +241,14 @@
 
     #"_ACC HS ELP" = Source{[Schema="",Item="ACC HS ELP"]}[Data], 
 
-     
-
+   
     TRANSVALUE = Table.ReplaceValue(#"_ACC HS ELP", "s", "", Replacer.ReplaceValue, {"ELL_COUNT", "BENCHMARK", "PROGRESS_RATE", "SUCCESS_RATIO", "LEVEL"}),  
 
     TRANSVALUE2 = Table.ReplaceValue(TRANSVALUE, ".", ",", Replacer.ReplaceText, {"SUCCESS_RATIO"}),  
 
     TRANSTYPE = Table.TransformColumnTypes(TRANSVALUE2, {{"ELL_COUNT", Int64.Type}, {"BENCHMARK", Int64.Type},{"PROGRESS_RATE", Int64.Type},{"SUCCESS_RATIO", Decimal.Type}, {"LEVEL", Int64.Type}})  
 
- 
-
-    in  
-
- 
+    in   
 
     TRANSTYPE 
 
@@ -290,9 +263,6 @@
     Source = Access.Database(File.Contents("C:\Users\Travail\OneDrive - EPITA\Projet\New York succes from school\Data\2021-2022\Windows Access\SRC2022.accdb"), [CreateNavigationProperties=true]), 
 
     #"_ACC HS Participation Rate" = Source{[Schema="",Item="ACC HS Participation Rate"]}[Data], 
-
-     
-
      
 
     TV = Table.ReplaceValue(#"_ACC HS Participation Rate", "s", "", Replacer.ReplaceValue, {"COHORT","RATE","MET_95_PERCENT"}),  
@@ -316,7 +286,6 @@
     Source = Access.Database(File.Contents("C:\Users\Travail\OneDrive - EPITA\Projet\New York succes from school\Data\2021-2022\Windows Access\SRC2022.accdb"), [CreateNavigationProperties=true]), 
 
     #"_ACC HS Graduation Rate" = Source{[Schema="",Item="ACC HS Graduation Rate"]}[Data], 
-
     
 
     MODIF1 = Table.ReplaceValue(#"_ACC HS Graduation Rate","s","",Replacer.ReplaceValue,{"COHORT_COUNT","GRAD_COUNT","GRAD_RATE","COHORT_LEVEL"}), 
@@ -343,6 +312,7 @@
 
     #"_Annual EM ELA" = Source{[Schema="",Item="Annual EM ELA"]}[Data], 
 
+
     TV = Table.ReplaceValue(#"_Annual EM ELA","s", "", Replacer.ReplaceValue, {"TOTAL_COUNT", "NOT_TESTED", "PCT_NOT_TESTED", "NUM_TESTED", "PCT_TESTED", "LEVEL1_COUNT", "LEVEL1_%TESTED", "LEVEL2_COUNT", "LEVEL2_%TESTED", "LEVEL3_COUNT", "LEVEL3_%TESTED", "LEVEL4_COUNT", "LEVEL4_%TESTED", "NUM_PROF", "PER_PROF","TOTAL_SCALE_SCORES", "MEAN_SCORE" }), 
 
     TV2 = Table.ReplaceValue(TV,".", ",", Replacer.ReplaceText, {"TOTAL_COUNT", "NOT_TESTED", "PCT_NOT_TESTED", "NUM_TESTED", "PCT_TESTED", "LEVEL1_COUNT", "LEVEL1_%TESTED", "LEVEL2_COUNT", "LEVEL2_%TESTED", "LEVEL3_COUNT", "LEVEL3_%TESTED", "LEVEL4_COUNT", "LEVEL4_%TESTED", "NUM_PROF", "PER_PROF","TOTAL_SCALE_SCORES", "MEAN_SCORE" }), 
@@ -364,6 +334,7 @@
     Source = Access.Database(File.Contents("C:\Users\Travail\OneDrive - EPITA\Projet\New York succes from school\Data\2021-2022\Windows Access\SRC2022.accdb"), [CreateNavigationProperties=true]), 
 
     #"_Annual EM MATH" = Source{[Schema="",Item="Annual EM MATH"]}[Data], 
+
 
     TV = Table.ReplaceValue(#"_Annual EM MATH","s", "", Replacer.ReplaceValue, {"TOTAL_COUNT", "NOT_TESTED", "PCT_NOT_TESTED", "NUM_TESTED", "PCT_TESTED", "LEVEL1_COUNT", "LEVEL1_%TESTED", "LEVEL2_COUNT", "LEVEL2_%TESTED", "LEVEL3_COUNT", "LEVEL3_%TESTED", "LEVEL4_COUNT", "LEVEL4_%TESTED","LEVEL5_COUNT", "LEVEL5_%TESTED", "NUM_PROF", "PER_PROF","TOTAL_SCALE_SCORES", "MEAN_SCORE", "TOTAL_EXEMPT", "NUM_EXEMPT_NTEST", "PCT_EXEMPT_NTEST", "NUM_EXEMPT_TEST", "PCT_EXEMPT_TEST" }), 
 
@@ -387,6 +358,7 @@
 
     #"_Annual EM SCIENCE" = Source{[Schema="",Item="Annual EM SCIENCE"]}[Data], 
 
+
     TV = Table.ReplaceValue(#"_Annual EM SCIENCE","s", "", Replacer.ReplaceValue, {"TOTAL_COUNT", "NOT_TESTED", "PCT_NOT_TESTED", "NUM_TESTED", "PCT_TESTED", "LEVEL1_COUNT", "LEVEL1_%TESTED", "LEVEL2_COUNT", "LEVEL2_%TESTED", "LEVEL3_COUNT", "LEVEL3_%TESTED", "LEVEL4_COUNT", "LEVEL4_%TESTED", "NUM_PROF", "PER_PROF","TOTAL_SCALE_SCORES", "MEAN_SCORE", "TOTAL_EXEMPT", "NUM_EXEMPT_NTEST", "PCT_EXEMPT_NTEST", "NUM_EXEMPT_TEST", "PCT_EXEMPT_TEST" }), 
 
     TV2 = Table.ReplaceValue(TV,".", ",", Replacer.ReplaceText, {"TOTAL_COUNT", "NOT_TESTED", "PCT_NOT_TESTED", "NUM_TESTED", "PCT_TESTED", "LEVEL1_COUNT", "LEVEL1_%TESTED", "LEVEL2_COUNT", "LEVEL2_%TESTED", "LEVEL3_COUNT", "LEVEL3_%TESTED", "LEVEL4_COUNT", "LEVEL4_%TESTED", "NUM_PROF", "PER_PROF","TOTAL_SCALE_SCORES", "MEAN_SCORE", "TOTAL_EXEMPT", "NUM_EXEMPT_NTEST", "PCT_EXEMPT_NTEST", "NUM_EXEMPT_TEST", "PCT_EXEMPT_TEST" }), 
@@ -408,6 +380,7 @@
     Source = Access.Database(File.Contents("C:\Users\Travail\OneDrive - EPITA\Projet\New York succes from school\Data\2021-2022\Windows Access\SRC2022.accdb"), [CreateNavigationProperties=true]), 
 
     #"_Annual NYSAA" = Source{[Schema="",Item="Annual NYSAA"]}[Data],   
+
 
     TV = Table.ReplaceValue(#"_Annual NYSAA","s", "", Replacer.ReplaceValue, {"TOTAL", "NOT_TESTED", "NOT_TESTED_PER","EXEMPT","EXEMPT_PER", "TESTED", "PER_TESTED", "LEVEL1_COUNT", "LEVEL1_PER", "LEVEL2_COUNT", "LEVEL2_PER", "LEVEL3_COUNT", "LEVEL3_PER", "LEVEL4_COUNT", "LEVEL4_PER", "PROFICIENT_COUNT", "PROFICIENT_PER" }),  
 
@@ -453,6 +426,7 @@
 
     #"_Annual Regents Exams" = Source{[Schema="",Item="Annual Regents Exams"]}[Data], 
 
+
     TV = Table.ReplaceValue(#"_Annual Regents Exams", "s","", Replacer.ReplaceValue, {"TESTED","NUM_LEVEL1","PER_LEVEL1","NUM_LEVEL2","PER_LEVEL2","NUM_LEVEL3","PER_LEVEL3","NUM_LEVEL4","PER_LEVEL4","NUM_LEVEL5","PER_LEVEL5","NUM_PROF","PER_PROF","TOTAL_EXEMPT","NUM_EXEMPT_NTEST","PCT_EXEMPT_NTEST","NUM_EXEMPT_TEST","PCT_EXEMPT_TEST"}), 
 
     TV2 = Table.ReplaceValue(TV, ".",",", Replacer.ReplaceText, {"NUM_LEVEL1","PER_LEVEL1","NUM_LEVEL2","PER_LEVEL2","NUM_LEVEL3","PER_LEVEL3","NUM_LEVEL4","PER_LEVEL4","NUM_LEVEL5","PER_LEVEL5","NUM_PROF","PER_PROF","TOTAL_EXEMPT","NUM_EXEMPT_NTEST","PCT_EXEMPT_NTEST","NUM_EXEMPT_TEST","PCT_EXEMPT_TEST"}), 
@@ -474,6 +448,7 @@
     Source = Access.Database(File.Contents("C:\Users\Travail\OneDrive - EPITA\Projet\New York succes from school\Data\2021-2022\Windows Access\SRC2022.accdb"), [CreateNavigationProperties=true]), 
 
     #"_Total Cohort Regents Exams" = Source{[Schema="",Item="Total Cohort Regents Exams"]}[Data], 
+    
 
     TV = Table.ReplaceValue(#"_Total Cohort Regents Exams", "s", "", Replacer.ReplaceValue, {"NTEST_COUNT", "NTEST_%COHORT", "TEST_COUNT", "TEST_%COHORT", "LEVEL1_COUNT", "LEVEL1_%COHORT", "LEVEL2_COUNT", "LEVEL2_%COHORT", "LEVEL3_COUNT", "LEVEL3_%COHORT", "LEVEL4_COUNT", "LEVEL4_%COHORT", "PROF_COUNT", "PROF_%COHORT","TOTAL_EXEMPT","NUM_EXEMPT_NTEST","PCT_EXEMPT_NTEST","NUM_EXEMPT_TEST","PCT_EXEMPT_TEST"}), 
 
@@ -496,6 +471,7 @@
     Source = Excel.Workbook(File.Contents("C:\Users\Travail\OneDrive - EPITA\Projet\New York succes from school\Data\2021-2022\csv\3-8-ELA-MATH-REFUSALS.xlsx"), null, true), 
 
     ELA_Sheet = Source{[Item="ELA",Kind="Sheet"]}[Data], 
+    
 
     #"En-têtes promus" = Table.PromoteHeaders(ELA_Sheet, [PromoteAllScalars=true]), 
 
@@ -520,6 +496,7 @@
     Source = Excel.Workbook(File.Contents("C:\Users\Travail\OneDrive - EPITA\Projet\New York succes from school\Data\2021-2022\csv\3-8-ELA-MATH-REFUSALS.xlsx"), null, true), 
 
     MATH_Sheet = Source{[Item="MATH",Kind="Sheet"]}[Data], 
+    
 
     #"En-têtes promus" = Table.PromoteHeaders(MATH_Sheet, [PromoteAllScalars=true]), 
 
