@@ -2,6 +2,16 @@
 
 #### FIRST YOU NEED TO OPEN POWER QUERY FROM POWER BI YOU CAN DO IT WHEN IMPORTING FILE OR BY USING THE TRANSFORM DATA BUTTON
 
+In the folowing file we used the same function to replace either s or - or other values by nothing in order to have only one type of data to manipulate it. We replaced the . by , because power by recognize float with a  coma not a dot. And we modified the types of columns.
+In the following document you will see this part of code :
+
+      let 
+
+      Source = Access.Database(File.Contents("C:\Users\Travail\OneDrive - EPITA\Projet\New York succes from school\Data\2021-2022\Windows Access\ELL_2021_2022.accdb"), [CreateNavigationProperties=true]), 
+
+      #"_~TMPCLP555981" = Source{[Schema="",Item="~TMPCLP555981"]}[Data],
+      
+You do not copy this in your power query editor because it is your link to the data and it is already in your editor when you import the data.
 
 ### ~TMPCLP555981 : 
 
@@ -14,9 +24,9 @@
       #"_~TMPCLP555981" = Source{[Schema="",Item="~TMPCLP555981"]}[Data], 
       
 
-      MODIF1 = Table.ReplaceValue(#"_~TMPCLP555981","-","0",Replacer.ReplaceValue,{"NUM_SWD", "NUM_ECDIS"}), 
+      MODIF1 = Table.ReplaceValue(#"_~TMPCLP555981","-","",Replacer.ReplaceValue,{"NUM_SWD", "NUM_ECDIS"}), 
 
-      MODIF2 = Table.ReplaceValue(MODIF1, " ", "0", Replacer.ReplaceValue, {"PER_SWD", "PER_ECDIS"}), 
+      MODIF2 = Table.ReplaceValue(MODIF1, " ", "", Replacer.ReplaceValue, {"PER_SWD", "PER_ECDIS"}), 
 
       MODIF3 = Table.TransformColumnTypes(MODIF2, {{"NUM_SWD", Decimal.Type}, {"NUM_ECDIS", Decimal.Type}, {"PER_SWD", Decimal.Type}, {"PER_ECDIS",  Decimal.Type}}) 
 
